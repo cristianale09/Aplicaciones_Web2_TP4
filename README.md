@@ -31,22 +31,22 @@ Aplicaciones_Web2_TP4
 │ │   ├── 📁 components
 │ │   │ └── alert.js
 │ │   ├── 📁 pages
+│ │   │ ├── 📁 content
+│ │   │ │ ├── contacto.html
+│ │   │ │ ├── productos.html
+│ │   │ │ ├── productos-gabinetes.html
+│ │   │ │ ├── productos-memoria.html
+│ │   │ │ ├── productos-monitor.html
+│ │   │ │ ├── productos-motherboard.html
+│ │   │ │ ├── productos-placa_video.html
+│ │   │ │ ├── productos-teclado_mouse.html
+│ │   │ │ └── quienes.html
 │ │   │ ├── 📁 home
 │ │   │ │ ├── index.html
 │ │   │ │ └── index.js
-│ │   │ ├── 📁 login
-│ │   │ │ ├── login.html
-│ │   │ │ └── auth.js
-│ │   │ └── 📁 content
-│ │   │   ├── contacto.html
-│ │   │   ├── productos.html
-│ │   │   ├── productos-gabinetes.html
-│ │   │   ├── productos-memoria.html
-│ │   │   ├── productos-monitor.html
-│ │   │   ├── productos-motherboard.html
-│ │   │   ├── productos-placa_video.html
-│ │   │   ├── productos-teclado_mouse.html
-│ │   │   └── quienes.html
+│ │   │ └── 📁 login
+│ │   │   ├── login.html
+│ │   │   └── auth.js
 │ │   ├── 📁 script
 │ │   │ ├── script.js 
 │ │   │ ├── script-contact.js

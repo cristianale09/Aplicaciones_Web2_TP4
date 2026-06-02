@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import userRouter from './routes/user.routes.js'
+import userRouter from './app/server/routes/user.routes.js'
 
 const app = express()
 const port = 3000
@@ -12,7 +12,7 @@ app.use(cors())
 app.use(express.json())
 
 /*Para levantar nuestro front*/
-app.use(express.static('./public'))
+app.use(express.static('./app/server'))
 
 /*Rutas de END-POINT*/
 app.use('/user', userRouter)

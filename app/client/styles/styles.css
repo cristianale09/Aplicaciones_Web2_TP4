@@ -550,9 +550,8 @@ button {cursor: pointer;
 .photo--1 {
     background-image: linear-gradient(#0009,#0009), url(../assets/IMG/Motherboard.webp);
 }
-
 .photo--2 {
-    background-image: linear-gradient(#0009,#0009), url(../IMG/PlacaVideo.jpg);
+    background-image: linear-gradient(#0009,#0009), url(../assets/IMG/PlacaVideo.jpg);
 }
 
 .photo--3 {

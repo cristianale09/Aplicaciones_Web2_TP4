@@ -23,7 +23,7 @@ function actualizarBotonAuth() {
         // Usuario no autenticado
         authButton.textContent = 'Iniciar Sesión';
         authButton.classList.remove('btn-logout');
-        authLink.href = '../login/login.html'; // Ajusta la ruta según la página
+        authLink.href = '../../pages/login/login.html'; // Ajusta la ruta según la página
     }
 }
 

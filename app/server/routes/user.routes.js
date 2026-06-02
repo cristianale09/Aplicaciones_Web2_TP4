@@ -5,7 +5,7 @@ import { readFile, writeFile} from 'fs/promises'
 const router = Router()
 
 /*RUTAS DE USUARIOS*/
-const fileUsers = await readFile('data/users.json', 'utf-8')
+const fileUsers = await readFile('../data/users.json', 'utf-8')
 const userData = JSON.parse(fileUsers)
 
 /*LOGIN*/
