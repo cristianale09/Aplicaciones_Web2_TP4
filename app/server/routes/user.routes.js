@@ -1,5 +1,6 @@
 import { Router} from "express";
 import { readFile, writeFile} from 'fs/promises'
+import { createProd } from '../db/actions/product.actions.js'
 
 //Creamos un router para manejar las rutas relacionadas con los usuarios
 const router = Router()
@@ -33,5 +34,42 @@ router.post('/login', (req, res) => {
 
     return res.status(401).json({ status: false, message: 'Credenciales inválidas' });
 });
+
+//modelo de consulta
+router.get('/all', (req,res)=>{
+    try {
+        
+        res.status(200).json()
+    } catch (error) {
+        
+        res.status(400).json()
+    }
+})
+
+//modelo de consulta
+router.get('/byId/:id', (req,res)=>{
+    const category = req.params.category
+    console.log(category)
+    try {
+        
+        res.status(200).json()
+    } catch (error) {
+        
+        res.status(400).json()
+    }
+})
+
+//modelo de consulta
+router.post('/create', async(req,res)=>{
+    const {name, desc, stock, price} = req.body
+    try {
+        const result = await createProd({name, desc, price, stock, category})
+        console.log(result)
+        res.status(200).json()
+    } catch (error) {
+        
+        res.status(400).json()
+    }
+})
 
 export default router

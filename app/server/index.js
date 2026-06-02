@@ -1,9 +1,12 @@
 import express from 'express'
 import cors from 'cors'
 import userRouter from './app/server/routes/user.routes.js'
+import 'dotenv/config'
 
 const app = express()
 const port = 3000
+
+const port = process.env.PORT
 
 //habilitamos CORS para permitir solicitudes desde el front-end
 app.use(cors())

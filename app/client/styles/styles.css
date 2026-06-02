@@ -509,7 +509,7 @@ button {cursor: pointer;
 .galery__categories {
     background-color: var(--galery-bg-color);
     color: var(--galery-text-color);
-    min-height: 100vh;
+    min-height: 85vh;
     display: flex;
     flex-direction: column;
     text-align: center;
