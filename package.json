@@ -1,0 +1,20 @@
+{
+  "name": "aplicaciones_web2_tp4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node app/server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --watch app/server/index.js"
+  },
+  "keywords": [],
+  "author": "Cristian_Ale",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "nodemon": "^3.1.14"
+  }
+}

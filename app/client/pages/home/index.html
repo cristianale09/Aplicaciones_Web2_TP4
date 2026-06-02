@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../styles/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!--  HEADER  -->
+    <div class="header__main">            
+        <Header class="header" id="header">
+            <!-- Menu desplegable -->
+            <button class="Header_Menu" id="Header_Menu" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>  
+            <!-- Logo -->
+            <a href="index.html" class="header__logo">
+                <span class="logo-icon"><i class="fa-solid fa-microchip"></i></span>
+                <span class="logo-text">Cristian<span>Ale</span></span>
+            </a>
+            <!--  NAVBAR  -->
+            <nav class="header__nav" id="header_nav">
+                <ul>
+                    <li>
+                        <a href="index.html" class="active">Inicio</a>
+                    </li>
+                    <li class="header_nav__drop">
+                        <a href="#productos">Productos <i class="fa-solid fa-chevron-down"></i></a>
+                        <ul class="header_nav__menu">
+                            <li><a href="pages/productos-motherboard.html">Motherboards</a></li>
+                            <li><a href="pages/productos-placa_video.html">Placas de video</a></li>
+                            <li><a href="pages/productos-gabinetes.html">Gabinetes</a></li>
+                            <li><a href="pages/productos-monitor.html">Monitores</a></li>
+                            <li><a href="pages/productos-teclado_mouse.html">Teclado y Mouse</a></li>
+                            <li><a href="pages/productos-memoria.html">Memorias RAM</a></li>
+                        </ul>
+                    </li>    
+                    <li><a href="pages/quienes.html">Quiénes Somos</a></li>
+                    <li><a href="pages/Contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+            <!-- Actions -->
+            <div class="header_end">
+                <!-- Search -->
+                <div class="header_search">
+                    <input type="text" placeholder="Buscar productos...">
+                    <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+
+                <!-- Carrito de compras -->
+                <div class="cart-wrapper" id="cartWrapper">
+                    <button class="cart-btn" id="cartBtn" aria-label="Carrito">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <span class="cart-badge" id="cartCount">0</span>
+                    </button>
+                    <div class="cart-panel" id="cartPanel">
+                        <div class="cart-panel__header">
+                            <h3>Mi Carrito</h3>
+                            <button class="close-cart" id="closeCart"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                        <div class="cart-panel__body">
+                            <table>
+                                <thead>
+                                    <tr><th>Producto</th><th>Precio</th><th>Cant.</th><th></th></tr>
+                                </thead>
+                                <tbody id="contentProducts"></tbody>
+                                <tfoot>
+                                    <tr><td colspan="4" class="cart-total">Total: <strong id="total">$0</strong></td></tr>
+                                    <tr><td colspan="4"><button id="emptyCart" class="btn-empty">Vaciar carrito</button></td></tr>
+                                    <tr><td colspan="4"><button class="btn-checkout">Finalizar compra</button></td></tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- Auth -->
+                <a class="header__nav-links" id="authLink" href="../login/login.html">
+                    <button id="authButton">Iniciar Sesión</button>
+                </a>
+            </div>
+        </Header>
+        <!--  MAIN  -->
+        <main>
+            <div class="main__row">
+                <div class="main__col-2">
+                    <h1>Arma tu PC</h1>
+                    <p>Domina cada partida sin límites. Siente cada explosión <br> y vive cada historia</p>
+                    <a href="#productos" class="main__btn">Explora ahora</a>
+                </div>
+                <div class="main__col-2">
+                    <img src="../../assets/IMG/pc-gamer2.png" alt="">
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!--  PHOTO GALERY  -->        
+    <section class="galery__categories">
+        <h2 class="galery-title" id="productos">Productos</h2>
+        <div class="galery__container">
+            <div class="galery__photo  photo--1">
+                <h2 class="galery__photo-name"><a href="../pages/productos-motherboard.html">Motherboards</a></h2>
+                </div>
+                <div class="galery__photo  photo--2">
+                    <h2 class="galery__photo-name"><a href="../pages/productos-placa_video.html">Placas de video</a></h2>
+                </div>
+                <div class="galery__photo  photo--3">
+                    <h2 class="galery__photo-name"><a href="../pages/productos-gabinetes.html">Gabinetes</a></h2>
+                </div>
+                <div class="galery__photo  photo--4">
+                    <h2 class="galery__photo-name"><a href="pages/productos-monitor.html">Monitores</a></h2>
+                </div>
+                <div class="galery__photo  photo--5">
+                    <h2 class="galery__photo-name"><a href="../pages/productos-teclado_mouse.html">Teclado y mouse</a></h2>
+                </div>
+                <div class="galery__photo  photo--6">
+                    <h2 class="galery__photo-name"><a href="../pages/productos-memoria.html">Memorias Ram</a></h2>
+                </div>
+            </div>
+        </div>             
+    </section>
+    <!--  FOOTER  -->
+    <footer class="footer">
+        <div class="footer__inner">
+            <div class="footer__col footer__brand">
+                <span class="logo-icon"><i class="fa-solid fa-microchip"></i></span>
+                <span class="logo-text">Cristian<span>Ale</span></span>
+                <p>Tu destino gamer. Componentes de alta performance para armar la PC de tus sueños.</p>
+                <div class="footer__social">
+                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer__col">
+                <h5>Productos</h5>
+                <ul>
+                    <li><a href="pages/productos-motherboard.html">Motherboards</a></li>
+                    <li><a href="pages/productos-placa_video.html">Placas de video</a></li>
+                    <li><a href="pages/productos-gabinetes.html">Gabinetes</a></li>
+                    <li><a href="pages/productos-monitor.html">Monitores</a></li>
+                    <li><a href="pages/productos-memoria.html">Memorias RAM</a></li>
+                </ul>
+            </div>
+            <div class="footer__col">
+                <h5>Información</h5>
+                <ul>
+                <li><a href="pages/quienes.html">Quiénes Somos</a></li>
+                <li><a href="pages/Contacto.html">Contacto</a></li>
+                <li><a href="#">Envíos y entregas</a></li>
+                <li><a href="#">Garantías</a></li>
+                <li><a href="#">Política de privacidad</a></li>
+                </ul>
+            </div>
+            <div class="footer__col">
+                <h5>Contacto</h5>
+                <p><i class="fa-solid fa-location-dot"></i> Buenos Aires, Argentina</p>
+                <p><i class="fa-solid fa-phone"></i> +54 11 1234-5678</p>
+                <p><i class="fa-solid fa-envelope"></i> info@cristianale.com</p>
+                <h5 style="margin-top:1.5rem">Newsletter</h5>
+                <div class="newsletter">
+                <input type="email" placeholder="tu@email.com">
+                <button><i class="fa-solid fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <p>© 2025 Cristian Ale. Todos los derechos reservados.</p>
+            <div class="payment-icons">
+                <i class="fa-brands fa-cc-visa"></i>
+                <i class="fa-brands fa-cc-mastercard"></i>
+                <i class="fa-brands fa-cc-amex"></i>
+                <i class="fa-brands fa-paypal"></i>
+            </div>
+        </div>
+    </footer>   
+</body>
+    <!--  SCRIPT  -->      
+    <script type="module" src="./index.js"></script>
+    <script src="../login/auth.js"></script>  
+</html>

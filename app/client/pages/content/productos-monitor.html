@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos</title>
+    <link rel="stylesheet" href="../../styles/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+</head>
+<body>
+    <!--  HEADER  -->
+    <div class="header__main">            
+        <Header class="header" id="header">
+            <!--  NAVBAR  -->            
+            <img class="header__logo" src="../assets/Logo/Logo_Cristian-Ale.png">
+            <nav class="Header__nav">
+                <ul class="header__nav-list">
+                    <li class="header__nav-item"><a href="../index.html">Home</a></li>
+                    <li class="header__nav-item"><a href=""><strong>Productos</strong></a></li>
+                    <li class="header__nav-item"><a href="../pages/Contacto.html">Contacto</a></li>
+                    <li class="header__nav-item"><a href="../pages/quienes.html">Quienes Somos</a></li>                    
+                </ul>
+            </nav>
+            <div class="header__icons">
+                <div class="header__btn-cart">
+                    <a href=""><i class="fa-sharp fa-solid fa-cart-arrow-down"></i></a>
+                    <span id="cartCount">0</span>
+                    
+                    <div class="header__cart-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Imagen</th>
+                                    <th>Producto</th>
+                                    <th>Precio</th>
+                                    <th>Cantidad</th>
+                                </tr>
+                            </thead>
+                            <tbody id="contentProducts">
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="5" class="total">
+                                        <h4 class="heading-total">Total: <span id="total"></span></h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5">
+                                        <button type="button" id="emptyCart">Empty Cart</button>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                <a class="header__nav-links" id="authLink" href="../login/login.html">
+                    <button id="authButton">Iniciar Sesión</button>
+                </a>
+            </div>
+        </Header>
+    </div>
+    <div class="header-secundary">
+        <nav class="Header__nav-secundary">
+            <ul class="header__nav-list-secundary">                
+                <li class="header__nav-item-secundary"><a href="productos.html">Todos</a></li>  
+                <li class="header__nav-item-secundary"><a href="productos-memoria.html">Gabinetes</a></li>
+                <li class="header__nav-item-secundary"><a href="productos-memoria.html">Memorias</a></li>
+                <li class="header__nav-item-secundary"><a href=""><strong>Monitores</strong></a></li>
+                <li class="header__nav-item-secundary"><a href="productos-motherboard.html">Motherboards</a></li>
+                <li class="header__nav-item-secundary"><a href="productos-placa_video.html">Placas de video</a></li>
+                <li class="header__nav-item-secundary"><a href="productos-teclado_mouse.html">Teclado y mouse</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!--  MAIN  -->
+    <section class="products__section" id="listproducts">
+        <h1 class="products_title">Monitores</h1>
+        <div class="Products__container">
+            <div class="products__box">
+                <div class="products__img">
+                    <img src="../../assets/IMG/Monitores/monitor-viewsonic-27.png" alt="">
+                </div>
+                <div class="products__content">
+                    <h3>Viewsonic 27 qhd</h3>
+                    <div class="products__price">$199999</div>
+                </div>
+                <div class="products__icon">
+                    <a><button type="button" class="product__btn" data-id="9">Agregar</button></a>
+                </div>
+            </div>
+            <div class="products__box">
+                <div class="products__img">
+                    <img src="../../assets/IMG/Monitores/LG-UltraGear 27-fhd.jpg" alt="">                    
+                </div>
+                <div class="products__content">
+                    <h3>LG UltraGear 27 fhd</h3>
+                    <div class="products__price">$229999</div>
+                </div>
+                <div class="products__icon">
+                    <a><button type="button" class="product__btn" data-id="10">Agregar</button></a>
+                </div>
+            </div>
+            <div class="products__box">
+                <div class="products__img">
+                    <img src="../../assets/IMG/Monitores/Lg-Ultrawide-Curvo-34.jpeg" alt="">
+                </div>
+                <div class="products__content">
+                    <h3>LG Ultravide 32 qhd</h3>
+                    <div class="products__price">$259999</div>
+                </div>
+                <div class="products__icon">
+                    <a><button type="button" class="product__btn" data-id="11">Agregar</button></a>
+                </div>
+            </div>
+            <div class="products__box">
+                <div class="products__img">
+                    <img src="../../assets/IMG/Monitores/samsung-odyssey-g4-25fhd.jpeg" alt="">
+                </div>
+                <div class="products__content">
+                    <h3>Samsung odyssey 25fhd</h3>
+                    <div class="products__price">$189999</div>
+                </div>                
+                <div class="products__icon">
+                    <a><button type="button" class="product__btn" data-id="12">Agregar</button></a>
+                </div>
+            </div>
+        </div>
+    </section>  
+    
+    <!--  FOOTER  -->
+    <footer>
+        <strong>Cristian Ale - 2025</strong> - Copyright
+    </footer>
+</body>
+<script src="./script.js"></script>
+<script src="../login/auth.js"></script>
+</html>

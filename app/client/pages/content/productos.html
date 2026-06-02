@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos</title>
+    <link rel="stylesheet" href="../../styles/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+</head>
+<body>
+    <!--  HEADER  -->
+    <div class="header__main">            
+        <Header class="header" id="header">
+            <!--  NAVBAR  -->            
+            <img class="header__logo" src="../../assets/Logo/Logo_Cristian-Ale.png">
+            <nav class="Header__nav">
+                <ul class="header__nav-list">
+                    <li class="header__nav-item"><a href="../home/index.html">Home</a></li>
+                    <li class="header__nav-item"><a href=""><strong>Productos</strong></a></li>
+                    <li class="header__nav-item"><a href="../pages/contacto.html">Contacto</a></li>
+                    <li class="header__nav-item"><a href="../pages/quienes.html">Quienes Somos</a></li>                    
+                </ul>
+            </nav>
+            <div class="header__icons">
+                <div class="header__btn-cart">
+                    <a href=""><i class="fa-sharp fa-solid fa-cart-arrow-down"></i></a>
+                    <span id="cartCount">0</span>
+                    
+                    <div class="header__cart-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Imagen</th>
+                                    <th>Producto</th>
+                                    <th>Precio</th>
+                                    <th>Cantidad</th>
+                                </tr>
+                            </thead>
+                            <tbody id="contentProducts">
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="5" class="total">
+                                        <h4 class="heading-total">Total: <span id="total"></span></h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5">
+                                        <button type="button" id="emptyCart">Empty Cart</button>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                <a class="header__nav-links" id="authLink" href="../login/login.html">
+                    <button id="authButton">Iniciar Sesión</button>
+                </a>
+            </div>
+        </Header>
+    </div>
+    <header class="header-secundary">
+        <nav class="Header__nav-secundary">
+            <ul class="header__nav-list-secundary">
+                <li class="header__nav-item-secundary"><a href=""><strong>Todos</strong></a></li>
+                <li class="header__nav-item-secundary"><a href="productos-gabinetes.html">Gabinetes</a></li>
+                <li class="header__nav-item-secundary"><a href="productos-memoria.html">Memorias</a></li>
+                <li class="header__nav-item-secundary"><a href="productos-monitor.html">Monitores</a></li>
+                <li class="header__nav-item-secundary"><a href="productos-motherboard.html">Motherboards</a></li>
+                <li class="header__nav-item-secundary"><a href="productos-placa_video.html">Placas de video</a></li>
+                <li class="header__nav-item-secundary"><a href="productos-teclado_mouse.html">Teclado y mouse</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!--  MAIN  -->
+    <section class="products__section" id="listproducts">
+        <h1 class="products_title">Todos los productos</h1>
+        <!-- GABINETES -->
+        <div class="Products__container">
+            <div class="products__box">
+                <div class="products__img">
+                    <img src="../../assets/IMG/Gabinete/Gabinete-Corsair-4000d.webp" alt="">
+                </div>
+                <div class="products__content">
+                    <h3>Gabinete corsair 4000d</h3>
+                    <div class="products__price">$249000</div>
+                </div>
+                <div class="products__icon">
+                    <a><button type="button" class="product__btn" data-id="1">Agregar</button></a>
+                </div>
+            </div>            
+            <div class="products__box">
+                <div class="products__img">
+                    <img src="../../assets/IMG/Gabinete/corsair_2500x.png" alt="">                    
+                </div>
+                <div class="products__content">
+                    <h3>Gabinete corsair 2500x</h3>
+                </div>
+                <div class="products__price">
+                    <span>$300000</span>
+                </div>                
+                <div class="products__icon">
+                    <a><button type="button" class="product__btn" data-id="2">Agregar</button></a>
+                </div>
+            </div>
+            <div class="products__box">
+                <div class="products__img">
+                    <img src="../../assets/IMG/Gabinete/corsair_carbide.jpg" alt="">
+                </div>
+                <div class="products__content">
+                    <h3>Gabinete Corsair Carbide</h3>
+                    <div class="products__price">$200000</div>
+                </div>
+                <div class="products__icon">
+                    <a><button type="button" class="product__btn" data-id="3">Agregar</button></a>
+                </div>
+            </div>
+            <div class="products__box">
+                <div class="products__img">
+                    <img src="../../assets/IMG/Gabinete/corsair_4000d.jpg" alt="">
+                </div>
+                <div class="products__content">
+                    <h3>Gabinete Corsair 4000d v2</h3>
+                    <div class="products__price">$190000</div>
+                </div>                
+                <div class="products__icon">
+                    <a><button type="button" class="product__btn" data-id="4">Agregar</button></a>
+                </div>
+            </div>
+        </div>
+        <!-- Memorias -->
+        <div class="Products__container">
+            <div class="products__box">
+                <div class="products__img">
+                    <img src="../../assets/IMG/Memorias/adata-16.jpg" alt="">
+                </div>
+                <div class="products__content">
+                    <h3>Adata 16gb</h3>
+                    <div class="products__price">$59999</div>
+                </div>
+                <div class="products__icon">
+                    <a><button type="button" class="product__btn" data-id="5">Agregar</button></a>
+                </div>
+            </div>
+            <div class="products__box">
+                <div class="products__img">
+                    <img src="../../assets/IMG/Memorias/adata-xpg-16.jpg" alt="">                    
+                </div>
+                <div class="products__content">
+                    <h3>adata xpg 16gb</h3>
+                    <div class="products__price">$79999</div>
+                </div>
+                <div class="products__icon">
+                    <a><button type="button" class="product__btn" data-id="6">Agregar</button></a>
+                </div>
+            </div>
+            <div class="products__box">
+                <div class="products__img">
+                    <img src="../../assets/IMG/Memorias/adata-xpg.png" alt="">
+                </div>
+                <div class="products__content">
+                    <h3>Adata xpg-rgb 16gb</h3>
+                    <div class="products__price">$129999</div>
+                </div>
+                <div class="products__icon">
+                    <a><button type="button" class="product__btn" data-id="7">Agregar</button></a>
+                </div>
+            </div>
+            <div class="products__box">
+                <div class="products__img">
+                    <img src="../../assets/IMG/Memorias/Memoria-kingston-16.jpg" alt="">
+                </div>
+                <div class="products__content">
+                    <h3>Kingston fury 16gb</h3>
+                    <div class="products__price">$89999</div>
+                </div>                
+                <div class="products__icon">
+                    <a><button type="button" class="product__btn" data-id="8">Agregar</button></a>
+                </div>
+            </div>
+        </div>
+        <!-- MONITORES -->
+        <div class="Products__container">
+            <div class="products__box">
+                <div class="products__img">
+                    <img src="../../assets/IMG/Monitores/monitor-viewsonic-27.png" alt="">
+                </div>
+                <div class="products__content">
+                    <h3>Viewsonic 27 qhd</h3>
+                    <div class="products__price">$199999</div>
+                </div>
+                <div class="products__icon">
+                    <a><button type="button" class="product__btn" data-id="9">Agregar</button></a>
+                </div>
+            </div>
+            <div class="products__box">
+                <div class="products__img">
+                    <img src="../../assets/IMG/Monitores/LG-UltraGear 27-fhd.jpg" alt="">                    
+                </div>
+                <div class="products__content">
+                    <h3>LG UltraGear 27 fhd</h3>
+                    <div class="products__price">$229999</div>
+                </div>
+                <div class="products__icon">
+                    <a><button type="button" class="product__btn" data-id="10">Agregar</button></a>
+                </div>
+            </div>
+            <div class="products__box">
+                <div class="products__img">
+                    <img src="../../assets/IMG/Monitores/Lg-Ultrawide-Curvo-34.jpeg" alt="">
+                </div>
+                <div class="products__content">
+                    <h3>LG Ultravide 32 qhd</h3>
+                    <div class="products__price">$259999</div>
+                </div>
+                <div class="products__icon">
+                    <a><button type="button" class="product__btn" data-id="11">Agregar</button></a>
+                </div>
+            </div>
+            <div class="products__box">
+                <div class="products__img">
+                    <img src="../../assets/IMG/Monitores/samsung-odyssey-g4-25fhd.jpeg" alt="">
+                </div>
+                <div class="products__content">
+                    <h3>Samsung odyssey 25fhd</h3>
+                    <div class="products__price">$189999</div>
+                </div>                
+                <div class="products__icon">
+                    <a><button type="button" class="product__btn" data-id="12">Agregar</button></a>
+                </div>
+            </div>
+        </div>
+        <!-- MOTHEBOARDS -->
+        <div class="Products__container">
+            <div class="products__box">
+                <div class="products__img">
+                    <img src="../../assets/IMG/Motherboard/asus-tuf.jpg" alt="">
+                </div>
+                <div class="products__content">
+                    <h3>Asus Tuf</h3>
+                    <div class="products__price">$219999</div>
+                </div>
+                <div class="products__icon">
+                    <a><button type="button" class="product__btn" data-id="13">Agregar</button></a>
+                </div>
+            </div>
+            <div class="products__box">
+                <div class="products__img">
+                    <img src="../../assets/IMG/Motherboard/Gigabyte-B840M.jpeg" alt="">                    
+                </div>
+                <div class="products__content">
+                    <h3>Gigabyte B840M</h3>
+                    <div class="products__price">$219999</div>
+                </div>
+                <div class="products__icon">
+                    <a><button type="button" class="product__btn" data-id="14">Agregar</button></a>
+                </div>
+            </div>
+            <div class="products__box">
+                <div class="products__img">
+                    <img src="../../assets/IMG/Motherboard/gigabyte-b850m.jpg" alt="">
+                </div>
+                <div class="products__content">
+                    <h3>gigabyte b850m</h3>
+                    <div class="products__price">$249999</div>
+                </div>
+                <div class="products__icon">
+                    <a><button type="button" class="product__btn" data-id="15">Agregar</button></a>
+                </div>
+            </div>
+            <div class="products__box">
+                <div class="products__img">
+                    <img src="../../assets/IMG/Motherboard/msi-z890.jpg" alt="">
+                </div>
+                <div class="products__content">
+                    <h3>MSI Z890</h3>
+                    <div class="products__price">$189999</div>
+                </div>                
+                <div class="products__icon">
+                    <a><button type="button" class="product__btn" data-id="16">Agregar</button></a>
+                </div>
+            </div>
+        </div>
+        <!-- PLACA DE VIDEO -->
+        <div class="Products__container">
+            <div class="products__box">
+                <div class="products__img">
+                    <img src="../../assets/IMG/VGA/5060ti-Gigabyte.png" alt="">
+                </div>
+                <div class="products__content">
+                    <h3>Gigabyte 5060ti</h3>
+                    <div class="products__price">$419999</div>
+                </div>
+                <div class="products__icon">
+                    <a><button type="button" class="product__btn" data-id="17">Agregar</button></a>
+                </div>
+            </div>
+            <div class="products__box">
+                <div class="products__img">
+                    <img src="../../assets/IMG/VGA/GIGABYTE-RTX-5090-Aorus.png" alt="">                    
+                </div>
+                <div class="products__content">
+                    <h3>Gigabyte rtx 5090</h3>
+                    <div class="products__price">$729999</div>
+                </div>
+                <div class="products__icon">
+                    <a><button type="button" class="product__btn" data-id="18">Agregar</button></a>
+                </div>
+            </div>
+            <div class="products__box">
+                <div class="products__img">
+                    <img src="../../assets/IMG/VGA/RTX-5050-8Gb-Msi.jpeg" alt="">
+                </div>
+                <div class="products__content">
+                    <h3>MSI 5050</h3>
+                    <div class="products__price">$329999</div>
+                </div>
+                <div class="products__icon">
+                    <a><button type="button" class="product__btn" data-id="19">Agregar</button></a>
+                </div>
+            </div>
+            <div class="products__box">
+                <div class="products__img">
+                    <img src="../../assets/IMG/VGA/RTX-5070-Gigabyte.png" alt="">
+                </div>
+                <div class="products__content">
+                    <h3>Gigabyte RTX 5070 </h3>
+                    <div class="products__price">$489999</div>
+                </div>                
+                <div class="products__icon">
+                    <a><button type="button" class="product__btn" data-id="20">Agregar</button></a>
+                </div>
+            </div>
+        </div>
+        <!-- TECLADO Y MOUSE -->
+        <div class="Products__container">
+            <div class="products__box">
+                <div class="products__img">
+                    <img src="../../assets/IMG/Teclado_mouse/nkb-68.jpg" alt="">
+                </div>
+                <div class="products__content">
+                    <h3>NKB 68</h3>
+                    <div class="products__price">$119999</div>
+                </div>
+                <div class="products__icon">
+                    <a><button type="button" class="product__btn" data-id="21">Agregar</button></a>
+                </div>
+            </div>
+            <div class="products__box">
+                <div class="products__img">
+                    <img src="../../assets/IMG/Teclado_mouse/RedDragon.1900.jpg" alt="">                    
+                </div>
+                <div class="products__content">
+                    <h3>RedDragon d1900</h3>
+                    <div class="products__price">$129999</div>
+                </div>
+                <div class="products__icon">
+                    <a><button type="button" class="product__btn" data-id="22">Agregar</button></a>
+                </div>
+            </div>
+            <div class="products__box">
+                <div class="products__img">
+                    <img src="../../assets/IMG/Teclado_mouse/SHENLONG-4000.png" alt="">
+                </div>
+                <div class="products__content">
+                    <h3>SHENLONG 4000x</h3>
+                    <div class="products__price">$159999</div>
+                </div>
+                <div class="products__icon">
+                    <a><button type="button" class="product__btn" data-id="23">Agregar</button></a>
+                </div>
+            </div>
+            <div class="products__box">
+                <div class="products__img">
+                    <img src="../../assets/IMG/Teclado_mouse/Logitech-G502.jpeg" alt="">
+                </div>
+                <div class="products__content">
+                    <h3>Logitech G502</h3>
+                    <div class="products__price">$88999</div>
+                </div>                
+                <div class="products__icon">
+                    <a><button type="button" class="product__btn" data-id="24">Agregar</button></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--  FOOTER  -->
+    <footer>
+        <strong>Cristian Ale - 2025</strong> - Copyright
+    </footer>
+</body>
+<script src="./script.js"></script>
+<script src="../login/auth.js"></script>
+</html>

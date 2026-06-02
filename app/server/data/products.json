@@ -1,0 +1,31 @@
+[
+    {"id": 1, "nameProducts": "Corsair_4000d", "category": "Case", "price": 250.00},
+    {"id": 2, "nameProducts": "Corsair_2500d", "category": "Case", "price": 300.00},
+    {"id": 3, "nameProducts": "Corsair_Carbide", "category": "Case", "price": 200.00},
+    {"id": 4, "nameProducts": "Corsair_4000d_v2", "category": "Case", "price": 190.00},
+
+    {"id": 5, "nameProducts": "adata_16gb", "category": "Memory", "price": 59.999},
+    {"id": 6, "nameProducts": "adata_xpg_16gb", "category": "Memory", "price": 79.999},
+    {"id": 7, "nameProducts": "adata_xpg-rgb_16gb", "category": "Memory", "price": 129.999},
+    {"id": 8, "nameProducts": "kingston_fury_16gb", "category": "Memory", "price": 89.999},
+
+    {"id": 9, "nameProducts": "Viewsonic_27_qhd", "category": "Monitor", "price": 199.999},
+    {"id": 10, "nameProducts": "Lg_ultragear_27_fhd", "category": "Monitor", "price": 229.999},
+    {"id": 11, "nameProducts": "Lg_ultraGear_32_qhd", "category": "Monitor", "price": 259.999},
+    {"id": 12, "nameProducts": "Samsung_odyssey_25fhd", "category": "Monitor", "price": 189.999},
+
+    {"id": 13, "nameProducts": "Asus_tuf", "category": "Motherboard", "price": 219.999},
+    {"id": 14, "nameProducts": "Gigabyte_b840m", "category": "Motherboard", "price": 219.999},
+    {"id": 15, "nameProducts": "Gigabyte_b850m", "category": "Motherboard", "price": 249.999},
+    {"id": 16, "nameProducts": "Msi_z890", "category": "Motherboard", "price": 189.999},
+
+    {"id": 17, "nameProducts": "Gigabyte_5060ti", "category": "Graphics_Card", "price": 419.999},
+    {"id": 18, "nameProducts": "MSI_5090", "category": "Graphics_Card", "price": 729.999},
+    {"id": 19, "nameProducts": "MSI_5050", "category": "Graphics_Card", "price": 329.999},
+    {"id": 20, "nameProducts": "Gigabyte_RTX_5070", "category": "Graphics_Card", "price": 489.999},
+
+    {"id": 21, "nameProducts": "NKB_68", "category": "Keyboard", "price": 119.999},
+    {"id": 22, "nameProducts": "RedDragon_d1900", "category": "Keyboard", "price": 129.999},
+    {"id": 23, "nameProducts": "Shenlong_4000x", "category": "Keyboard", "price": 159.999},
+    {"id": 24, "nameProducts": "Logitech_G502", "category": "Mouse", "price": 89.999}
+]
