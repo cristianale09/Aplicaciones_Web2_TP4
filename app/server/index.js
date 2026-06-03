@@ -1,24 +1,25 @@
 import express from 'express'
 import cors from 'cors'
-import userRouter from './app/server/routes/user.routes.js'
+import userRouter from './routes/user.routes.js'
+import ProductsRoutes from './routes/product.routes.js'
 import 'dotenv/config'
 
 const app = express()
-const port = 3000
-
-const port = process.env.PORT
-
-//habilitamos CORS para permitir solicitudes desde el front-end
-app.use(cors())
 
 //habilitamos el parseo de JSON en las solicitudes entrantes
 app.use(express.json())
+
+const port = process.env.PORT || 3000
+
+//habilitamos CORS para permitir solicitudes desde el front-end
+app.use(cors())
 
 /*Para levantar nuestro front*/
 app.use(express.static('./app/server'))
 
 /*Rutas de END-POINT*/
 app.use('/user', userRouter)
+app.use('/product', ProductsRoutes)
 
 //levantamos el servidor
 app.listen(port, () => {

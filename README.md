@@ -22,11 +22,13 @@ El proyecto incluye un frontend estático y un backend básico con rutas para us
 
 📦 Estructura del proyecto
 
-```bash
+```text
 Aplicaciones_Web2_TP4
 ├── 📁 app
 │ ├── 📁 client
 │ │   ├── 📁 assets
+│ │   │ ├── 📁 Icons  
+│ │   │ ├── 📁 IMG
 │ │   │ └── logo.png
 │ │   ├── 📁 components
 │ │   │ └── alert.js
@@ -52,23 +54,29 @@ Aplicaciones_Web2_TP4
 │ │   │ ├── script-contact.js
 │ │   │ └── script-login.js
 │ │   ├── 📁 styles
-│ │   │   ├── styles.css
-│ │   │   └── styles-login.css
+│ │   │ ├── styles.css
+│ │   │ └── styles-login.css
 │ │   └── 📁 utils
-│ │       └── sessionStorage.controller.js
+│ │     └── sessionStorage.controller.js
 │ └── 📁 server
 │   ├── 📁 data
 │   │ └── users.json
+│   ├── 📁 db
+│   │ ├── 📁 actions
+│   │ │ └── product.actions.js
+│   │ ├── 📁 schemas
+│   │ │ └── product.schema.js
+│   │ └── connection.js
 │   ├── 📁 routes
 │   │ ├── user.routes.js
 │   │ └── product.routes.js
+│   ├── .env
 │   └── index.js 
 ├── 📁 node_modules
-├── public
 ├── .gitignore
-├── index.js
 ├── package.json
-└── package-lock.json
+├── package-lock.json
+└── README.md
 
 
 ```

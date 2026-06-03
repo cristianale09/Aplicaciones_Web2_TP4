@@ -6,7 +6,7 @@ import { createProd } from '../db/actions/product.actions.js'
 const router = Router()
 
 /*RUTAS DE USUARIOS*/
-const fileUsers = await readFile('../data/users.json', 'utf-8')
+const fileUsers = await readFile(new URL('../data/users.json', import.meta.url),'utf-8')
 const userData = JSON.parse(fileUsers)
 
 /*LOGIN*/
