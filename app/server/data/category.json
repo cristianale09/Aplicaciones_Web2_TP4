@@ -1,0 +1,11 @@
+[
+    { "name": "Case" },
+    { "name": "Memory" },
+    { "name": "Monitor" },
+    { "name": "Motherboard" },
+    { "name": "Graphics_Card" },
+    { "name": "Keyboard_and_Mouse" },
+    { "name": "Power_Supply" },
+    { "name": "Processor" },
+    { "name": "Consola" }
+]

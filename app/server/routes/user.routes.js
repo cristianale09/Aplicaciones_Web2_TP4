@@ -1,75 +1,165 @@
 import { Router} from "express";
-import { readFile, writeFile} from 'fs/promises'
 import { createProd } from '../db/actions/product.actions.js'
+import { createUser, findAllUsers, findUserById, updateUser, deleteUser } from '../db/actions/user.action.js'
+import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
+import { decodedToken } from '../utils/middleware.js';
+
 
 //Creamos un router para manejar las rutas relacionadas con los usuarios
 const router = Router()
 
-/*RUTAS DE USUARIOS*/
-const fileUsers = await readFile(new URL('../data/users.json', import.meta.url),'utf-8')
-const userData = JSON.parse(fileUsers)
+/* =============================================
+                INICIAR SESION
+============================================= */
 
-/*LOGIN*/
-router.post('/login', (req, res) => {
-    const { username, password } = req.body;
+router.post('/login', async (req, res) => {
 
-    //validación de campos vacíos
-    if (!username || !password) {
-        return res.status(400).json({ message: 'Faltan credenciales' });
-    }
-
-    const result = userData.find(e => e.username === username && e.password === password);
-
-    if (result) {
-        //devolvemos solo lo necesario, sin exponer la contraseña
-        const data = {
-            id: result.id_user,
-            name: result.name,
-            lastName: result.lastname,
-            userName: result.username,
-            status: true
+    const { userName, password } = req.body;
+    try {
+        const user = await User.findOne({ userName });
+        if (!user) {
+            return res.status(404).json({
+                status: false,
+                message: 'Usuario no encontrado'
+            });
         }
-        return res.status(200).json({ message: 'Login exitoso', user: data });
+        const validPassword = bcrypt.compareSync( password, user.password );
+        if (!validPassword) {
+            return res.status(401).json({
+                status: false,
+                message: 'Contraseña incorrecta'
+            });
+        }
+        const token = jwt.sign(
+            {
+                id: user._id,
+                userName: user.userName,
+                name: user.name
+            },
+            SECRET,
+            { expiresIn: '24h' }
+        );
+        res.status(200).json({
+            status: true,
+            token
+        });
+    } catch (error) {
+        res.status(500).json({
+            status: false,
+            message: error.message
+        });
     }
-
-    return res.status(401).json({ status: false, message: 'Credenciales inválidas' });
 });
 
-//modelo de consulta
-router.get('/all', (req,res)=>{
-    try {
-        
-        res.status(200).json()
-    } catch (error) {
-        
-        res.status(400).json()
-    }
-})
+/* =============================================
+                CREAR USUARIO
+============================================= */
 
 //modelo de consulta
-router.get('/byId/:id', (req,res)=>{
-    const category = req.params.category
-    console.log(category)
-    try {
-        
-        res.status(200).json()
-    } catch (error) {
-        
-        res.status(400).json()
-    }
-})
+router.post('/create', async (req, res) => {
 
-//modelo de consulta
-router.post('/create', async(req,res)=>{
-    const {name, desc, stock, price} = req.body
+    const { name, lastName, userName, password } = req.body;
     try {
-        const result = await createProd({name, desc, price, stock, category})
-        console.log(result)
-        res.status(200).json()
+        const hashedPassword = bcrypt.hashSync(password, 8);
+        const result = await createUser(
+            name,
+            lastName,
+            userName,
+            hashedPassword
+        );
+        res.status(201).json({
+            status: true,
+            message: 'Usuario creado exitosamente',
+            user: result
+        });
     } catch (error) {
-        
-        res.status(400).json()
+        console.error(error);
+        res.status(400).json({
+            status: false,
+            message: error.message
+        });
     }
-})
+});
+
+/* =============================================
+            LEER USUARIOS JWT
+============================================= */
+
+router.post('/decodedToken', async (req, res) => {
+    const { token } = req.body;
+    const result = await decodedToken(token);
+    if (!result) {
+        return res.status(401).json({
+            status: false,
+            message: 'Token inválido'
+        });
+    }
+    res.status(200).json(result);
+});
+
+/* =============================================
+                BUSCAR TODOS
+============================================= */
+
+router.get('/all', async (req, res) => {
+    try {
+        const result = await findAllUsers();
+        res.status(200).json(result);
+    } catch (error) {
+        res.status(400).json({
+            message: error.message
+        });
+    }
+});
+
+/* =============================================
+                BUSCAR POR ID
+============================================= */
+
+router.get('/:id', async (req, res) => {
+    try {
+        const result = await findUserById(req.params.id);
+        res.status(200).json(result);
+    } catch (error) {
+        res.status(404).json({
+            message: error.message
+        });
+    }
+});
+
+/* =============================================
+                MODIFICAR
+============================================= */
+
+router.put('/:id', async (req, res) => {
+    try {
+        const result = await updateUser(
+            req.params.id,
+            req.body
+        );
+        res.status(200).json(result);
+    } catch (error) {
+        res.status(400).json({
+            message: error.message
+        });
+    }
+});
+
+/* =============================================
+                ELIMINAR
+============================================= */
+
+router.delete('/:id', async (req, res) => {
+    try {
+        const result = await deleteUser(req.params.id);
+        res.status(200).json(result);
+    } catch (error) {
+        res.status(400).json({
+            message: error.message
+        });
+    }
+});
+
 
 export default router

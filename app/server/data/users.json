@@ -3,35 +3,30 @@
         "name": "Juan",
         "lastname": "Pérez",
         "username": "juanperez",
-        "password": "123456",
-        "id_user": 1
+        "password": "123456"
     },
     {        
         "name": "Ana",
         "lastname": "García",
         "username": "anagarcia",
-        "password": "abcdef",
-        "id_user": 2
+        "password": "abcdef"
     },
     {
         "name": "Luis",
         "lastname": "Martínez",
         "username": "luismartinez",
-        "password": "qwerty",
-        "id_user": 3
+        "password": "qwerty"
     },
     {        
         "name": "María",
         "lastname": "López",
         "username": "marialopez",
-        "password": "pass123",
-        "id_user": 4
+        "password": "pass123"
     },
     {
         "name": "Carlos",
         "lastname": "Sánchez",
         "username": "carlossanchez",
-        "password": "admin123",
-        "id_user": 5
+        "password": "admin123"
     }    
 ]

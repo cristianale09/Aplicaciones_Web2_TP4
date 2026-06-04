@@ -2,6 +2,10 @@ import { conectToDataBase } from "../connection.js"
 import Product from "../schemas/product.schema.js"
 import Category from "../schemas/category.schema.js"
 
+/* =============================================
+                Crear categoría
+============================================= */
+
 export const createCategory = async(name) => {
     try {
         await conectToDataBase()
@@ -12,6 +16,10 @@ export const createCategory = async(name) => {
         console.log(error)
     }
 }
+
+/* =============================================
+        buscar todas las categorías
+============================================= */
 
 export const findAll = async() => {
     try {

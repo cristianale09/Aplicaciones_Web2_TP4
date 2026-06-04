@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import userRouter from './routes/user.routes.js'
 import ProductsRoutes from './routes/product.routes.js'
+import CategoryRoutes from './routes/category.routes.js'
 import 'dotenv/config'
 
 const app = express()
@@ -20,6 +21,7 @@ app.use(express.static('./app/server'))
 /*Rutas de END-POINT*/
 app.use('/user', userRouter)
 app.use('/product', ProductsRoutes)
+app.use('/category', CategoryRoutes)
 
 //levantamos el servidor
 app.listen(port, () => {

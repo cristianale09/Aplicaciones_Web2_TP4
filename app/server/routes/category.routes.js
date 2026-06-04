@@ -9,11 +9,11 @@ import { updateNameById } from '../db/actions/product.actions.js';
 const router = express.Router()
 
 /* =============================================
-                CREAR DATOS
+                CREAR CATEGORIA
 ============================================= */
 
 router.post('/create', async (req, res) => {
-    const { name, brand, category, price, stock, rating, image } = req.body;
+    const { name } = req.body;
 
     try {
         await connectToDatabase();
@@ -21,7 +21,7 @@ router.post('/create', async (req, res) => {
         console.log("Mongo conectado");
 
         const categoryFound = await Category.findOne({
-            name: category
+            name: name
         });
 
         if (!categoryFound) {
@@ -31,13 +31,7 @@ router.post('/create', async (req, res) => {
         }
 
         const result = await createProd({
-            name,
-            brand,
-            category: categoryFound._id,
-            price,
-            stock,
-            rating,
-            image
+            name
         });
 
         res.status(200).json(result);
@@ -52,7 +46,7 @@ router.post('/create', async (req, res) => {
 });
 
 /* =============================================
-                BUSCAR DATOS
+                BUSCAR CATEGORIA
 ============================================= */
 
 //buscar todos
@@ -61,7 +55,7 @@ router.get('/all', async (req, res) => {
         const result = await findAll()
         res.status(200).json(result)
     } catch (error) {
-        res.status(400).json({ message: 'Error al leer productos' })
+        res.status(400).json({ message: 'Error al leer la categoria' })
     }
 })
 
@@ -73,24 +67,12 @@ router.get('/byId/:id', async (req, res) => {
         const result = await findByID(id)
         res.status(200).json(result)
     } catch (error) {
-        res.status(400).json({ message: 'Error al leer productos' })
-    }
-})
-
-//buscar por categoría
-router.get('/byCategory/:category', async (req, res) => {
-    const category = req.params.category 
-
-    try {
-        const result = await findByCategory(category)
-        res.status(200).json(result)
-    } catch (error) {
-        res.status(400).json({ message: 'Error al leer productos' })
+        res.status(400).json({ message: 'Error al leer la categoria' })
     }
 })
 
 /* =============================================
-                ACTUALIZAR DATOS
+                ACTUALIZAR CATEGORIA
 ============================================= */
 
 router.patch('/updateByName/:id', async (req, res) => {
@@ -102,24 +84,25 @@ router.patch('/updateByName/:id', async (req, res) => {
         console.log(result)
         res.status(200).json(result)
     } catch (error) {
-        res.status(400).json({ message: 'Error al actualizar producto' })
+        res.status(400).json({ message: 'Error al actualizar categoría' })
     }
 })
 
 /* =============================================
-                BORRAR DATOS
+                BORRAR CATEGORIA
 ============================================= */
 
 router.delete('/delete/:id', async (req, res) => {
     const id = req.params.id
 
     try {
-        const result = await Product.findByIdAndDelete(id)
+        const result = await Category.findByIdAndDelete(id)
         console.log(result)
         res.status(200).json(result)
     } catch (error) {
-        res.status(400).json({ message: 'Error al borrar producto' })
+        res.status(400).json({ message: 'Error al borrar categoría' })
     }
 })
+
 
 export default router

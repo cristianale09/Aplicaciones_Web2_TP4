@@ -7,10 +7,10 @@ import Product from "../schemas/product.schema.js"
 ============================================= */
 
 //creamos un producto en la base de datos
-export const createProd = async({name, description, price, stock, category})=>{
+export const createProd = async({name, brand, category, price, stock, rating, image})=>{
     try {
         await connectToDatabase()
-        const res = await Product.create({name, description, price, stock, category})
+        const res = await Product.create({name, brand, category, price, stock, rating, image})
 
         return JSON.parse(JSON.stringify(res))
 
@@ -28,10 +28,10 @@ export const createProd = async({name, description, price, stock, category})=>{
 export const findAll = async()=>{
     try {
         await connectToDatabase()
-        const res = await Product.find()  //si no va nada entre parentesis encuentra todos los productos
-        return JSON.parse(JSON.stringify(res))
+        const products = await Product.find().populate({path:"category"})  //si no va nada entre parentesis encuentra todos los productos
+        return JSON.parse(JSON.stringify(products))
     }catch (error) {
-        console.log(error)
+        throw error;
     }
 }
 
@@ -51,6 +51,36 @@ export const findByCategory = async(category)=>{
     try {
         await connectToDatabase()
         const res = await Product.find({category}).populate({path:"category"})
+        return JSON.parse(JSON.stringify(res))
+    }catch (error) {
+        console.log(error)
+    }
+}
+
+/* =============================================
+                ACTUALIZAR DATOS
+============================================= */
+
+//actualizar todos los datos
+export const updateNameById = async(name, id, brand, category, price, stock, rating, image)=>{
+    try {
+        await connectToDatabase()
+        const res = await Product.findByIdAndUpdate(id, {name, brand, category, price, stock, rating, image}, {new: true})
+        return JSON.parse(JSON.stringify(res))
+    }catch (error) {
+        console.log(error)
+    }
+}
+
+/* =============================================
+                BORRAR DATOS
+============================================= */
+
+//borrar un producto por su ID
+export const deleteProductById = async(id)=>{
+    try {
+        await connectToDatabase()
+        const res = await Product.findByIdAndDelete(id)
         return JSON.parse(JSON.stringify(res))
     }catch (error) {
         console.log(error)
