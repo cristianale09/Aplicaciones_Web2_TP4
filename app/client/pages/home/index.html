@@ -10,6 +10,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!--
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const token = sessionStorage.getItem('token');
+
+            if (!token) {
+                window.location.href = '../login/login.html';
+                return;
+            }
+        }); 
+    </script>--> 
     <!--  HEADER  -->
     <div class="header__main">            
         <Header class="header" id="header">
@@ -220,5 +231,5 @@
 </body>
     <!--  SCRIPT  -->      
     <script type="module" src="./index.js"></script>
-    <script src="../login/auth.js"></script>  
+    <script type="module" src="../login/auth.js"></script>  
 </html>

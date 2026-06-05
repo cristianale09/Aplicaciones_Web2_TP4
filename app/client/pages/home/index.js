@@ -1,28 +1,37 @@
-import { getSession } from "../../utils/sessionStorage.controller.js";
+import { getCurrentUser } from "../login/auth.js";
 
 //Verificamos si hay sesión para mostrar el nombre del usuario en el botón de login y cambiar su funcionalidad a logout
 const authLink = document.getElementById('authLink')
 const authButton = document.getElementById('authButton')
 
-const user = getSession()
+let currentUser = null;
 
-if (authLink && authButton) {
-    const user = getSession()
+document.addEventListener('DOMContentLoaded', async () => {
+    currentUser = await getCurrentUser();
 
-    if (user) {
-        authButton.textContent = `${user.name} | Cerrar Sesión`
-        authLink.href = '#'
-
+    if (currentUser) {
+        authButton.textContent =
+            `${currentUser.userName} | Cerrar Sesión`;
+        authLink.href = '#';
         authLink.addEventListener('click', (e) => {
-            e.preventDefault()
-            sessionStorage.removeItem('user')
-            window.location.reload()
-        })
+            e.preventDefault();
+            sessionStorage.removeItem('token');
+            sessionStorage.removeItem('estaAutenticado');
+            window.location.reload();
+        });
+        const savedCart = localStorage.getItem(
+            `cart_${currentUser.id}`
+        );
+        if (savedCart) {
+            cart.items = JSON.parse(savedCart);
+        }
     } else {
-        authButton.textContent = 'Iniciar Sesión'
-        authLink.href = 'login.html'
+        authButton.textContent = 'Iniciar Sesión';
+        authLink.href = '../login/login.html';
     }
-}
+
+    cart.render();
+});
 
 /* ---- MOBILE NAV ---- */
 (function initMobileNav() {
@@ -62,12 +71,17 @@ if (authLink && authButton) {
 
 /* ---- CART LOGIC ---- */
 const cart = {
-    items: JSON.parse(localStorage.getItem('ca_cart') || '[]'),
+    items: [],
 
     save() {
-        localStorage.setItem('ca_cart', JSON.stringify(this.items));
+        if (currentUser) {
+            localStorage.setItem(
+                `cart_${currentUser.id}`,
+                JSON.stringify(this.items)
+            );
+        }
         this.render();
-    },
+    },  
 
     add(name, price) {
         const existing = this.items.find(i => i.name === name);

@@ -1,13 +1,16 @@
 import { Router} from "express";
 import { createProd } from '../db/actions/product.actions.js'
 import { createUser, findAllUsers, findUserById, updateUser, deleteUser } from '../db/actions/user.action.js'
+import User from "../db/schemas/user.schema.js";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import { decodedToken } from '../utils/middleware.js';
-
+import { connectToDatabase } from '../db/connection.js';
+import 'dotenv/config';
 
 //Creamos un router para manejar las rutas relacionadas con los usuarios
 const router = Router()
+const SECRET = process.env.JWT_SECRET;
 
 /* =============================================
                 INICIAR SESION
@@ -17,6 +20,7 @@ router.post('/login', async (req, res) => {
 
     const { userName, password } = req.body;
     try {
+        await connectToDatabase();
         const user = await User.findOne({ userName });
         if (!user) {
             return res.status(404).json({

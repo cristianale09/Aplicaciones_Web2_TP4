@@ -15,64 +15,87 @@ loginBtn.addEventListener('click', () => {
 })
 
 /* registro */
-formRegistro.addEventListener('submit', function(e) {
+formRegistro.addEventListener('submit', async function(e) {
     e.preventDefault();
 
     // Obtener los valores de los inputs
     const userName = document.getElementById('userName').value;
-    const mail = document.getElementById('mail').value;
     const password = document.getElementById('password').value;
 
     // Crear objeto con los datos del usuario
-    const nuevoUsuario = {
-        id: Date.now(), // ID único usando timestamp
-        usuario: userName,
-        correo: mail,
-        contrasena: password, // En producción, NUNCA guardes contraseñas sin encriptar
-        fechaRegistro: new Date().toISOString()
+    const body = {
+        name: userName,
+        lastname: "Usuario",
+        userName,
+        password
     };
+    try {
+        const response = await fetch(
+            'http://localhost:3001/user/create',
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(body)
+            }
+        );
 
-    // Guardar en sessionStorage
-    sessionStorage.setItem('usuario', JSON.stringify(nuevoUsuario));
-    sessionStorage.setItem('estaAutenticado', 'true');
+        const data = await response.json();
 
-    // Mostrar mensaje de éxito
-    alert('¡Registro exitoso!');
-
-    formRegistro.reset();
+        if (data.status) {
+            alert('Usuario registrado');
+            formRegistro.reset();
+        } else {
+            alert(data.message);
+        }
+    } catch (error) {
+        console.error(error);
+    }
 });
 
 /* login */
-formLogin.addEventListener('submit', function(e) {
+formLogin.addEventListener('submit', async function(e) {
     e.preventDefault();
 
     // Obtener los valores ingresados
-    const userIngresado = document.getElementById('userLogin').value.trim();
-    const passwordIngresada = document.getElementById('passwordLogin').value;
+    const userName = document.getElementById('userLogin').value.trim();
+    const password = document.getElementById('passwordLogin').value;
     
-    // Obtener el usuario guardado en sessionStorage
-    const usuarioGuardado = sessionStorage.getItem('usuario');
-    
-    // Verificar si existe un usuario registrado
-    if (!usuarioGuardado) {
-        alert('No hay ningún usuario registrado. Por favor regístrate primero.');
-        return;
-    }
+    try {
+        const response = await fetch(
+            'http://localhost:3001/user/login',
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    userName,
+                    password
+                })
+            }
+        );
 
-    // Convertir el string a objeto
-    const usuario = JSON.parse(usuarioGuardado);
-    
-    // Verificar las credenciales
-    if (usuario.usuario === userIngresado && usuario.contrasena === passwordIngresada) {
-        // Login exitoso
-        sessionStorage.setItem('estaAutenticado', 'true');
-        sessionStorage.setItem('usuarioActivo', JSON.stringify(usuario));
-        
-        alert(`¡Bienvenido de nuevo ${usuario.usuario}!`);
-        window.location.href = '../index.html';
-    } else {
-        // Credenciales incorrectas
-        alert('Usuario o contraseña incorrectos');
-        document.getElementById('passwordLogin').value = ''; // Limpiar contraseña
+        const data = await response.json();
+
+        if (!data.status) {
+            alert(data.message);
+            return;
+        }
+        sessionStorage.setItem(
+            'token',
+            data.token
+        );
+        sessionStorage.setItem(
+            'estaAutenticado',
+            'true'
+        );
+
+        alert('Login exitoso');
+        window.location.href =
+            '../home/index.html';
+    } catch (error) {
+        console.error(error);
     }
 });

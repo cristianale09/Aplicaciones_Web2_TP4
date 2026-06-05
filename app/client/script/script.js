@@ -2,13 +2,13 @@ const listproducts = document.querySelector('#listproducts');
 const contentProducts = document.querySelector('#contentProducts');
 const emptyCart = document.querySelector('#emptyCart');
 
-const API_URL = 'http://localhost:3000';
+const API_URL = 'http://localhost:3001';
 let productsArray = [];
 
 //carga productos del backend y arma el HTML
 async function loadProductsFromAPI() {
     try {
-        const res = await fetch(`${API_URL}/products`);
+        const res = await fetch(`${API_URL}/product/all`)
         if (!res.ok) throw new Error('Error al cargar productos');
         const products = await res.json();
 
