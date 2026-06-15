@@ -7,10 +7,10 @@ import User from "../schemas/user.schema.js"
                 Crear usuario
 ============================================= */
 
-export const createUser = async(name, lastName, userName, password) => {
+export const createUser = async(name, lastName, userName, password, role = 'client') => {
     try {
         await connectToDatabase()
-        const res = await User.create({name, lastName, userName, password})
+        const res = await User.create({name, lastName, userName, password, role})
         return JSON.parse(JSON.stringify(res))
     } catch (error) {
         console.log(error)

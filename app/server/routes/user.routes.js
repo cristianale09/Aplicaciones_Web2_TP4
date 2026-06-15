@@ -39,7 +39,8 @@ router.post('/login', async (req, res) => {
             {
                 id: user._id,
                 userName: user.userName,
-                name: user.name
+                name: user.name,
+                role: user.role
             },
             SECRET,
             { expiresIn: '24h' }
@@ -70,7 +71,10 @@ router.post('/create', async (req, res) => {
             name,
             lastName,
             userName,
-            hashedPassword
+            hashedPassword,
+            {
+                "role" : "client"
+            }
         );
         res.status(201).json({
             status: true,
@@ -91,8 +95,14 @@ router.post('/create', async (req, res) => {
 ============================================= */
 
 router.post('/decodedToken', async (req, res) => {
-    const { token } = req.body;
+    const token = req.body?.token;
     const result = await decodedToken(token);
+    if (!token) {
+        return res.status(400).json({
+            status: false,
+            message: 'Token requerido'
+        });
+    }
     if (!result) {
         return res.status(401).json({
             status: false,
