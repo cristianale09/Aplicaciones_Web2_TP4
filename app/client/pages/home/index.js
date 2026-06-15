@@ -5,6 +5,8 @@ const authLink = document.getElementById('authLink')
 const authButton = document.getElementById('authButton')
 
 let currentUser = null;
+let allProducts = [];
+let selectedCategory = 'all';
 
 document.addEventListener('DOMContentLoaded', async () => {
     currentUser = await getCurrentUser();
@@ -32,6 +34,224 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     cart.render();
 });
+
+
+/* ---- PRODUCTS ---- */
+async function loadProducts() {
+    try {
+        const response =
+            await fetch(
+                'http://localhost:3001/product/all'
+            );
+        allProducts = await response.json();
+        renderBrandFilters(allProducts);
+        applyFilters();
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+document.addEventListener(
+    'DOMContentLoaded',
+    loadProducts
+);
+
+/* ---- CART PRODUCT ---- */
+function renderProducts(products) {
+    const container =
+        document.getElementById(
+            'productsContainer'
+        );
+    container.innerHTML = '';
+
+    products.forEach(product => {
+        container.innerHTML += `
+        <div class="product-card"
+            data-product="${product._id}">
+            <div class="product-card__img">
+                <img
+                    src="${product.image}"
+                    alt="${product.name}"
+                    class="product-image"
+                >
+                <button
+                    class="wishlist-btn"
+                    aria-label="Favorito">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+            </div>
+            <div class="product-card__body">
+                <span class="product-brand">
+                    ${product.brand}
+                </span>
+                <h5>
+                    ${product.name}
+                </h5>
+                <div class="product-rating">
+                    <span class="stars">
+                        ${'★'.repeat(product.rating)}
+                    </span>
+                    <span class="review-count">
+                        (${product.stock} disponibles)
+                    </span>
+                </div>
+                <div class="product-price">
+                    <span class="price-new">
+                        $${product.price.toLocaleString('es-AR')}
+                    </span>
+                </div>
+                <button
+                    class="btn-add-cart"
+                    data-name="${product.name}"
+                    data-price="${product.price}"
+                >
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    Agregar
+                </button>
+            </div>
+        </div>
+        `;
+    });
+}
+
+/* ---- FILTRAR ---- */
+function applyFilters() {
+    let filtered = [...allProducts];
+
+    /* Categoría */
+    if (selectedCategory !== 'all') {
+        filtered = filtered.filter(product =>
+            product.category.name === selectedCategory
+        );
+    }
+    /* Marcas */
+    const selectedBrands =
+        [...document.querySelectorAll(
+            '.brand-filter:checked'
+        )]
+        .map(cb => cb.value);
+    if (selectedBrands.length > 0) {
+
+        filtered = filtered.filter(product =>
+            selectedBrands.includes(product.brand)
+        );
+    }
+    /* Precio máximo */
+    const maxPrice =
+        parseFloat(
+            document.getElementById('priceRange').value
+        );
+    filtered = filtered.filter(product =>
+        product.price <= maxPrice
+    );
+
+    /* Orden */
+    const sort =
+        document.getElementById(
+            'sortProducts'
+        ).value;
+    if (sort === 'price-asc') {
+        filtered.sort(
+            (a, b) => a.price - b.price
+        );
+    }
+    if (sort === 'price-desc') {
+        filtered.sort(
+            (a, b) => b.price - a.price
+        );
+    }
+    renderProducts(filtered);   
+    
+    document
+        .getElementById('productsGrid')
+        .scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        }); 
+}
+document
+    .getElementById('sortProducts')
+    .addEventListener(
+        'change',
+        applyFilters
+    );
+
+/* ---- CATEGORIA ---- */
+document
+    .querySelectorAll('[data-category]')
+    .forEach(link => {
+        link.addEventListener('click', e => {
+            e.preventDefault();
+            selectedCategory =
+            link.dataset.category;
+            const categoryProducts =
+                selectedCategory === 'all'
+                    ? allProducts
+                    : allProducts.filter(
+                        p =>
+                            p.category.name ===
+                            selectedCategory
+                    );
+            renderBrandFilters(categoryProducts);
+            applyFilters();
+        });
+    });
+
+/* ---- MARCA ---- */
+document
+    .querySelectorAll('.brand-filter')
+    .forEach(cb => {
+        cb.addEventListener(
+            'change',
+            applyFilters
+        );
+    });
+
+/* ---- PRECIO ---- */
+const priceRange =
+    document.getElementById('priceRange');
+
+priceRange.addEventListener('input', () => {
+    document.getElementById('priceVal')
+        .textContent =
+        `$${Number(priceRange.value)
+            .toLocaleString('es-AR')}`;
+    applyFilters();
+});
+
+/* ---- Filtrar filtros MARCAS ---- */
+function renderBrandFilters(products) {
+    const container =
+        document.getElementById('brandFilters');
+    const brands = [
+        ...new Set(
+            products.map(
+                product => product.brand
+            )
+        )
+    ];
+    container.innerHTML = '';
+    brands.forEach(brand => {
+        container.innerHTML += `
+            <label class="check-item">
+                <input
+                    type="checkbox"
+                    class="brand-filter"
+                    value="${brand}"
+                >
+                ${brand}
+            </label>
+        `;
+    });
+    document
+        .querySelectorAll('.brand-filter')
+        .forEach(cb => {
+            cb.addEventListener(
+                'change',
+                applyFilters
+            );
+        });
+}
 
 /* ---- MOBILE NAV ---- */
 (function initMobileNav() {

@@ -669,7 +669,7 @@ button {cursor: pointer;
     color: #d1d5db;
     letter-spacing: .5px;
     transition: var(--transition);
-  cursor: default;
+    cursor: default;
 }
 .brands__inner span:hover {
     color: var(--clr-primary);
@@ -1022,6 +1022,10 @@ button {cursor: pointer;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 1rem;
+}
+
+#productsContainer {
+    display: contents;
 }
 
 /* Featured banner */

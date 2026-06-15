@@ -36,12 +36,6 @@ Aplicaciones_Web2_TP4
 │ │   │ ├── 📁 content
 │ │   │ │ ├── contacto.html
 │ │   │ │ ├── productos.html
-│ │   │ │ ├── productos-gabinetes.html
-│ │   │ │ ├── productos-memoria.html
-│ │   │ │ ├── productos-monitor.html
-│ │   │ │ ├── productos-motherboard.html
-│ │   │ │ ├── productos-placa_video.html
-│ │   │ │ ├── productos-teclado_mouse.html
 │ │   │ │ └── quienes.html
 │ │   │ ├── 📁 home
 │ │   │ │ ├── index.html
