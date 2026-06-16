@@ -94,6 +94,30 @@ cd trabajo_practico3
 
 ```
 
+## Configuración del entorno
+
+Antes de ejecutar el proyecto, crear un archivo `.env` en la raíz tomando como referencia el archivo `.env.example`.
+
+Ejemplo:
+
+```env
+MONGO_URI=mongodb://localhost:27017/
+JWT_SECRET=tu_clave_jwt
+PORT=3001
+```
+
+Luego instalar dependencias:
+
+```bash
+npm install
+```
+
+Y ejecutar el servidor:
+
+```bash
+npm run dev
+```
+
 Instalar dependencias
 ```
 
