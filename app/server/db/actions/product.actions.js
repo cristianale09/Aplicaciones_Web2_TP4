@@ -47,13 +47,26 @@ export const findByID = async(id)=>{
 }
 
 //buscar por categoría
-export const findByCategory = async(category)=>{
+export const findByCategory = async (categoryName) => {
     try {
-        await connectToDatabase()
-        const res = await Product.find({category}).populate({path:"category"})
-        return JSON.parse(JSON.stringify(res))
-    }catch (error) {
-        console.log(error)
+        await connectToDatabase();
+
+        const category = await Category.findOne({
+            name: categoryName
+        });
+
+        if (!category) {
+            return [];
+        }
+
+        const products = await Product.find({
+            category: category._id
+        }).populate("category");
+
+        return JSON.parse(JSON.stringify(products));
+
+    } catch (error) {
+        console.log(error);
     }
 }
 
@@ -62,13 +75,18 @@ export const findByCategory = async(category)=>{
 ============================================= */
 
 //actualizar todos los datos
-export const updateNameById = async(name, id, brand, category, price, stock, rating, image)=>{
+export const updateProductById = async(id, data)=>{
     try {
-        await connectToDatabase()
-        const res = await Product.findByIdAndUpdate(id, {name, brand, category, price, stock, rating, image}, {new: true})
-        return JSON.parse(JSON.stringify(res))
+        await connectToDatabase();
+
+        return await Product.findByIdAndUpdate(
+            id,
+            data,
+            { new: true }
+        );
     }catch (error) {
         console.log(error)
+        throw error;
     }
 }
 

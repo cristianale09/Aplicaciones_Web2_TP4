@@ -72,9 +72,7 @@ router.post('/create', async (req, res) => {
             lastName,
             userName,
             hashedPassword,
-            {
-                "role" : "client"
-            }
+            "client"
         );
         res.status(201).json({
             status: true,

@@ -1,10 +1,9 @@
 import express from 'express'
 import { connectToDatabase } from '../db/connection.js';
-import {createProd, findAll, findByID, findByCategory} from '../db/actions/product.actions.js'; 
+import {createProd, findAll, findByID, findByCategory, updateProductById} from '../db/actions/product.actions.js'; 
 import { readFile } from 'fs/promises'
 import Category from '../db/schemas/category.schema.js';
 import Product from '../db/schemas/product.schema.js';
-import { updateNameById } from '../db/actions/product.actions.js';
 
 const router = express.Router()
 
@@ -93,16 +92,23 @@ router.get('/byCategory/:category', async (req, res) => {
                 ACTUALIZAR DATOS
 ============================================= */
 
-router.patch('/updateByName/:id', async (req, res) => {
+router.put('/updateProductById/:id', async (req, res) => {
     const id = req.params.id
     const { name } = req.body
 
     try {
-        const result = await updateNameById(name, id)
+        const result = await updateProductById(
+            id,
+            req.body
+        );
         console.log(result)
         res.status(200).json(result)
     } catch (error) {
-        res.status(400).json({ message: 'Error al actualizar producto' })
+            console.log(error);
+
+        res.status(400).json({
+            message: error.message
+        });
     }
 })
 
@@ -111,15 +117,30 @@ router.patch('/updateByName/:id', async (req, res) => {
 ============================================= */
 
 router.delete('/delete/:id', async (req, res) => {
-    const id = req.params.id
+    const id = req.params.id;
 
     try {
-        const result = await Product.findByIdAndDelete(id)
-        console.log(result)
-        res.status(200).json(result)
+
+        const result = await Product.findByIdAndDelete(id);
+
+        if (!result) {
+            return res.status(404).json({
+                message: "Producto no encontrado"
+            });
+        }
+
+        res.status(200).json({
+            message: "Producto eliminado correctamente",
+            product: result
+        });
+
     } catch (error) {
-        res.status(400).json({ message: 'Error al borrar producto' })
+        console.error(error);
+
+        res.status(400).json({
+            message: error.message
+        });
     }
-})
+});
 
 export default router

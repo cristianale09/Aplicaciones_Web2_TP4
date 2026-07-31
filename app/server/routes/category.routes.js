@@ -1,10 +1,9 @@
 import express from 'express'
 import { connectToDatabase } from '../db/connection.js';
-import {createProd, findAll, findByID, findByCategory} from '../db/actions/product.actions.js'; 
+import { createCategory, findAll, findCategoryById, updateCategory, deleteCategory} from '../db/actions/category.acction.js';
 import { readFile } from 'fs/promises'
 import Category from '../db/schemas/category.schema.js';
 import Product from '../db/schemas/product.schema.js';
-import { updateNameById } from '../db/actions/product.actions.js';
 
 const router = express.Router()
 
@@ -24,15 +23,15 @@ router.post('/create', async (req, res) => {
             name: name
         });
 
-        if (!categoryFound) {
-            return res.status(404).json({
-                message: 'Categoría no encontrada'
+        if (categoryFound) {
+            return res.status(400).json({
+                message: 'Categoría ya existe'
             });
         }
 
-        const result = await createProd({
+        const result = await createCategory(
             name
-        });
+        );
 
         res.status(200).json(result);
 
@@ -64,7 +63,7 @@ router.get('/byId/:id', async (req, res) => {
     const id = req.params.id
 
     try {
-        const result = await findByID(id)
+        const result = await findCategoryById(id)
         res.status(200).json(result)
     } catch (error) {
         res.status(400).json({ message: 'Error al leer la categoria' })
@@ -75,32 +74,49 @@ router.get('/byId/:id', async (req, res) => {
                 ACTUALIZAR CATEGORIA
 ============================================= */
 
-router.patch('/updateByName/:id', async (req, res) => {
-    const id = req.params.id
-    const { name } = req.body
+router.put('/updateCategory/:id', async (req, res) => {
+    const id = req.params.id;
+    const { name } = req.body;
 
     try {
-        const result = await updateNameById(name, id)
-        console.log(result)
-        res.status(200).json(result)
+        const result = await updateCategory(id, name);
+
+        res.status(200).json(result);
+
     } catch (error) {
-        res.status(400).json({ message: 'Error al actualizar categoría' })
+        res.status(400).json({
+            message: error.message
+        });
     }
-})
+});
 
 /* =============================================
                 BORRAR CATEGORIA
 ============================================= */
 
-router.delete('/delete/:id', async (req, res) => {
+router.delete('/deleteCategory/:id', async (req, res) => {
     const id = req.params.id
 
     try {
         const result = await Category.findByIdAndDelete(id)
-        console.log(result)
-        res.status(200).json(result)
+
+        if (!result) {
+            return res.status(404).json({
+                message: "Categoría no encontrada"
+            });
+        }
+
+        res.status(200).json({
+            message: "Categoría eliminada correctamente",
+            category: result
+        });
+
     } catch (error) {
-        res.status(400).json({ message: 'Error al borrar categoría' })
+        console.error(error);
+
+        res.status(400).json({
+            message: error.message
+        });
     }
 })
 

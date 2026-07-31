@@ -1,6 +1,5 @@
-import { conectToDataBase } from "../connection.js"
-import Product from "../schemas/product.schema.js"
-import Category from "../schemas/category.schema.js"
+import { connectToDatabase } from "../connection.js";
+import Category from "../schemas/category.schema.js";
 
 /* =============================================
                 Crear categoría
@@ -8,10 +7,9 @@ import Category from "../schemas/category.schema.js"
 
 export const createCategory = async(name) => {
     try {
-        await conectToDataBase()
-        const res = await Category.create({name})
+        await connectToDatabase();
 
-        return JSON.parse(JSON.stringify(res))
+        return await Category.create({ name });
     } catch (error) {
         console.log(error)
     }
@@ -23,11 +21,59 @@ export const createCategory = async(name) => {
 
 export const findAll = async() => {
     try {
-        await conectToDataBase()
-        const res = await Product.find()
+        await connectToDatabase();
 
-        return JSON.parse(JSON.stringify(res))
+        return await Category.find();
     } catch (error) {
         console.log(error)
     }
 }
+
+/* =============================================
+        buscar categoría por ID
+============================================= */
+
+export const findCategoryById  = async(id) => {
+    try {
+        await connectToDatabase();
+
+        return await Category.findById(id);
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+/* =============================================
+            Actualizar categoría
+============================================= */
+
+export const updateCategory = async(id, name) => {
+    try {
+        await connectToDatabase();
+
+        return await Category.findByIdAndUpdate(
+            id,
+            { name },
+            { new: true }
+        );
+    } catch (error) {
+        console.log(error)        
+        throw error;
+    }
+}
+
+
+/* =============================================
+            Borrar categoría
+============================================= */
+
+export const deleteCategory = async (id) => {
+    try {
+        await connectToDatabase();
+        const result = await Category.findByIdAndDelete(id);
+        return JSON.parse(JSON.stringify(result));
+    } catch (error) {
+        console.log(error)
+        throw error;
+    }
+};

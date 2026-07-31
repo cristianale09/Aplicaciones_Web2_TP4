@@ -186,3 +186,6 @@ function clearHtml() {
         contentProducts.removeChild(contentProducts.firstChild);
     }
 }
+
+//convertimos el stirng a entero
+dineroCofla = parseInt(dineroCofla)
