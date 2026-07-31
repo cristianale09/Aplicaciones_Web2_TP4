@@ -19,13 +19,15 @@ formRegistro.addEventListener('submit', async function(e) {
     e.preventDefault();
 
     // Obtener los valores de los inputs
+    const name = document.getElementById('Name').value;
+    const lastName = document.getElementById('lastName').value;
     const userName = document.getElementById('userName').value;
     const password = document.getElementById('password').value;
 
     // Crear objeto con los datos del usuario
     const body = {
-        name: userName,
-        lastname: "Usuario",
+        name,
+        lastName,
         userName,
         password
     };
